@@ -45,6 +45,7 @@ sales.drop(columns=["Open"], inplace=True)
 sales.plot(y=['Sales', 'Customers', 'CompetitionDistance'], 
            kind='box', subplots=True, layout=(2,2), figsize=(15,15))
 
+plt.savefig("outliers_plots/Outliers_before")
 
 # From the box plots above we can see that Sales, Customers, and CompetitionDistance all appear to have significant outliers, 
 # so we'll explore further by calculating and investigating the outliers for each one.
@@ -82,8 +83,8 @@ sales_outliers_by_month = pd.pivot_table((sales.loc[sales[col] > upper_sales]), 
 
 sales_outliers_by_month.plot(y='Sales', kind='pie', figsize=(7,7), title="# of Sales Outlier Entries by Month", autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
-
+# plt.show()
+plt.savefig("outliers_plots/Sales_Outliers_by_Month")
 
 sales_outliers_by_stype = pd.pivot_table((sales.loc[sales[col] > upper_sales]), index='StoreType', values='Sales', aggfunc='count')
 
@@ -92,7 +93,9 @@ sales_outliers_by_stype.plot(y='Sales', kind='pie', figsize=(6,6),
                              title="# of Sales Outlier Entries by Store Type", 
                              autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
+# plt.show()
+plt.savefig("outliers_plots/Sales_Outliers_by_Store_Type")
+
 
 # Above we may notice that majority of outliers comes from Store Type A. This suggests that Type A stores may be the best performers in regards to outstanding sales days, and is worth looking into further.
 
@@ -136,7 +139,8 @@ cust_outliers_by_month = pd.pivot_table((sales_treated.loc[sales_treated[col] > 
 
 cust_outliers_by_month.plot(y='Customers', kind='pie', figsize=(7,7), title="# of Customer Outlier Entries by Month", autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
+# plt.show()
+plt.savefig("outliers_plots/Customers_Outliers_by_Month")
 
 
 
@@ -146,7 +150,8 @@ cust_outliers_by_stype.plot(y='Customers', kind='pie', figsize=(6,6),
                              title="# of Customer Outlier Entries by Store Type", 
                              autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
+# plt.show()
+plt.savefig("outliers_plots/Customers_Outliers_by_Store_Type")
 
 
 # December is our most represented month for Customer outliers, similar to our Sales outliers, but it's percentage of outliers is less than we saw with our Sales.
@@ -184,7 +189,8 @@ cust_outliers_by_month = pd.pivot_table((sales_treated.loc[sales_treated[col] > 
 
 cust_outliers_by_month.plot(y='CompetitionDistance', kind='pie', figsize=(7,7), title="# of CompetitionDistance Outlier Entries by Month", autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
+# plt.show()
+plt.savefig("outliers_plots/CompetitionDistance_Outliers_by_Month")
 
 
 
@@ -194,7 +200,8 @@ cust_outliers_by_stype.plot(y='CompetitionDistance', kind='pie', figsize=(6,6),
                              title="# of CompetitionDistance Outlier Entries by Store Type", 
                              autopct="%.2f%%")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
-plt.show()
+# plt.show()
+plt.savefig("outliers_plots/CompetitionDistance_Outliers_by_Store_Type")
 
 # Otlieres are almost equally distributed between months
 
@@ -208,3 +215,10 @@ sales_treated.loc[sales_treated['CompetitionDistance'] > upper_cust, 'Competitio
 
 print(sales_treated[sales_treated['CompetitionDistance'] > 16160]) ## double-checking our imputation worked, as we can see records of this command are empty
 
+
+# Finally we will look how distribution of our data looks after treatement of outliers
+
+sales_treated.plot(y=['Sales', 'Customers', 'CompetitionDistance'], 
+           kind='box', subplots=True, layout=(2,2), figsize=(15,15))
+
+plt.savefig("outliers_plots/Outliers_after_treatement")
