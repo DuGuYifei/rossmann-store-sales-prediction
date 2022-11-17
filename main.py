@@ -16,7 +16,6 @@ merged_sales['Customers'].plot(kind="kde", ax=ax4)
 
 fig.set_size_inches(15, 5)
 plt.show()
-
 print("Skewness: " + str(round(merged_sales['Sales'].skew(), 3)))
 print("Kurtosis: " + str(round(merged_sales['Sales'].kurtosis(), 3)))
 print(merged_sales['Sales'].describe().round(3))
