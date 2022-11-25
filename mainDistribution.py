@@ -1,8 +1,6 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import scipy
+from common import *
 
-stores = pd.read_csv('dataset/store.csv')
+stores = store
 sales = pd.read_csv('dataset/train.csv', low_memory=False)
 merged_sales = sales.merge(
     stores, how='left', on="Store", validate="many_to_one")

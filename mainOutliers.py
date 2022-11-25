@@ -1,11 +1,8 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+from common import *
 from IPython.display import display
 # import openpyxl
 
-stores_lookup = pd.read_csv('./dataset/store.csv')
+stores_lookup = store
 sales_data = pd.read_csv('./dataset/train.csv', low_memory=False)
 
 # merge data store.csv and train.csv
