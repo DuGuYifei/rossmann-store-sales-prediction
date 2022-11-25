@@ -1,10 +1,4 @@
-import numpy as np
-import pandas as pd
-
-store = pd.read_csv('dataset/store.csv')
-test = pd.read_csv('dataset/test.csv')
-train = pd.read_csv('dataset/train.csv')
-sample_submission = pd.read_csv('dataset/sample_submission.csv')
+from common import *
 
 # To check the missing values in the dataset we will run the below code
 print(sample_submission.isna().sum())
