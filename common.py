@@ -7,9 +7,9 @@ import seaborn as sns
 import scipy
 
 # load dataset
-train = pd.read_csv('./dataset/train.csv', parse_dates=[2])
+train = pd.read_csv('./dataset/train.csv', parse_dates=[2], low_memory=False)
 test = pd.read_csv('./dataset/test.csv', parse_dates=[3])
-store = pd.read_csv('./dataset/store.csv')
+store = pd.read_csv('./dataset/store.csv', low_memory=False)
 sample_submission = pd.read_csv('dataset/sample_submission.csv')
 
 features = [
