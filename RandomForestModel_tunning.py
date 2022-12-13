@@ -37,7 +37,7 @@ y_test = X_test_without_date['Sales']
 x_test = X_test_without_date.drop(['Sales'], axis=1)
 
 rf_model = RandomForestRegressor(
-    n_estimators=200, oob_score=True, n_jobs=32, verbose=1, random_state=678)
+	n_estimators=200, oob_score=True, n_jobs=32, verbose=1, random_state=678)
 
 rf_model.fit(x_train, y_train)
 rf_predict = rf_model.predict(x_test)
@@ -53,18 +53,18 @@ print('RMSPE: ', rmspe(rf_predict, y_test))
 
 pd.options.display.float_format = '{:.5f}'.format
 important_features = pd.DataFrame(
-    rf_model.feature_importances_, index=x_train.columns)
+	rf_model.feature_importances_, index=x_train.columns)
 print(important_features.sort_values(by=0, ascending=False))
 
 predict_df = pd.DataFrame(rf_predict)
 predict_df.columns = ['Predicted_sales']
 predict_df = pd.concat([X_test.reset_index(drop=True),
-                       predict_df], axis=1, sort=False)
+					   predict_df], axis=1, sort=False)
 train['Date'] = train['Date'].apply(lambda dt: dt.replace(day=1))
 predict_df['Date'] = predict_df['Date'].apply(lambda dt: dt.replace(day=1))
 train = train.groupby(['Date'])['Sales'].sum().reset_index()
 predict_df = predict_df.groupby(
-    ['Date'])['Predicted_sales'].sum().reset_index()
+	['Date'])['Predicted_sales'].sum().reset_index()
 
 plt.figure(figsize=(15, 7))
 plt.plot(train['Date'], train['Sales'])

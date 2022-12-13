@@ -1,0 +1,5 @@
+"Id","Store","StoreType","Assortment","CompetitionDistance","CompetitionOpenSinceMonth","CompetitionOpenSinceYear","Promo2","Promo2SinceWeek","Promo2SinceYear","PromoInterval","DayOfWeek","Date","Sales","Customers","Open","Promo","StateHoliday","SchoolHoliday"
+1,1,"c","a",1270,9,2008,0,,,"",5,2018-07-31,5263,555,1,1,"0","1"
+2,1,"c","a",1270,9,2008,0,,,"",5,2018-08-1,5263,555,1,1,"0","1"
+3,1,"c","a",1270,9,2008,0,,,"",5,2018-08-2,5263,555,1,1,"0","1"
+4,1,"c","a",1270,9,2008,0,,,"",5,2018-08-3,5263,555,1,1,"0","1"

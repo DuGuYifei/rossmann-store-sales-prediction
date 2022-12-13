@@ -35,7 +35,7 @@ y_train = X_train_without_date['Sales']
 x_train = X_train_without_date.drop(['Sales'], axis=1)
 
 rf_model = RandomForestRegressor(
-    n_estimators=200, oob_score=True, n_jobs=32, verbose=1, random_state=678)
+	n_estimators=200, oob_score=True, n_jobs=32, verbose=1, random_state=678)
 rf_model.fit(x_train, y_train)
 
 print('oob score :', rf_model.oob_score_)
@@ -48,7 +48,7 @@ predict_df = pd.DataFrame(rf_predict)
 predict_df.columns = ['Predicted_sales']
 predict_df = pd.concat([test, predict_df], axis=1, sort=False)
 predict_df = predict_df.groupby(
-    ['Date'])['Predicted_sales'].sum().reset_index()
+	['Date'])['Predicted_sales'].sum().reset_index()
 
 plt.figure(figsize=(15, 7))
 plt.plot(predict_df['Date'], predict_df['Predicted_sales'])

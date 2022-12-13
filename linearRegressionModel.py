@@ -18,7 +18,7 @@ train = pd.merge(train, store, on='Store')
 
 features_create(train)
 cols = ['Store', 'monthStr', 'Promo2SinceWeek', 'Promo2SinceYear',
-        'PromoInterval', 'CompetitionOpen', 'PromoOpen']
+		'PromoInterval', 'CompetitionOpen', 'PromoOpen']
 train.drop(cols, axis=1, inplace=True)
 
 train = train.sort_values(by=['Date']).reset_index(drop=True)
@@ -54,14 +54,14 @@ linreg_pred_test_set = scaler.inverse_transform(linreg_pred_test_set)
 real_test = X_test['Sales'].to_numpy().T
 
 linreg_rmse = np.sqrt(mean_squared_error(
-    linreg_pred_test_set[:, 0], real_test))
+	linreg_pred_test_set[:, 0], real_test))
 linreg_mae = mean_absolute_error(linreg_pred_test_set[:, 0], real_test)
 linreg_r2 = r2_score(linreg_pred_test_set[:, 0], real_test)
 print('Linear Regression RMSE: ', linreg_rmse)
 print('Linear Regression MAE: ', linreg_mae)
 print('Linear Regression R2 Score: ', linreg_r2)
 print('Linear Regression RMSPE: ', rmspe(
-    linreg_pred_test_set[:, 0], real_test))
+	linreg_pred_test_set[:, 0], real_test))
 
 
 plt.figure(figsize=(15, 7))
@@ -73,7 +73,7 @@ plt.ylabel("Sales")
 plt.legend(["Original Sales", "Predicted Sales"])
 # plt.show()
 plt.savefig(
-    'results/linearRegressionPlots/salesForecastUsingLinearRegressionFullPicture')
+	'results/linearRegressionPlots/salesForecastUsingLinearRegressionFullPicture')
 
 
 train_to_visualise = train[-30:]
@@ -91,4 +91,4 @@ plt.ylabel("Sales")
 plt.legend(["Original Sales", "Predicted Sales"])
 # plt.show()
 plt.savefig(
-    'results/linearRegressionPlots/salesForecastUsingLinearRegressionLast30Records')
+	'results/linearRegressionPlots/salesForecastUsingLinearRegressionLast30Records')

@@ -3,7 +3,7 @@ from common import *
 stores = store
 sales = pd.read_csv('dataset/train.csv', low_memory=False)
 merged_sales = sales.merge(
-    stores, how='left', on="Store", validate="many_to_one")
+	stores, how='left', on="Store", validate="many_to_one")
 
 fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
 merged_sales.hist(column='Sales', bins='sturges', ax=ax1)

@@ -21,14 +21,14 @@ features_create(test)
 
 # Training the model
 params = {
-    "objective": "reg:linear",
-    "booster": "gbtree",
-    "eta": 0.3,
-    "max_depth": 10,
-    "subsample": 0.9,
-    "colsample_bytree": 0.7,
-    "silent": 1,
-    "seed": 1301
+	"objective": "reg:linear",
+	"booster": "gbtree",
+	"eta": 0.3,
+	"max_depth": 10,
+	"subsample": 0.9,
+	"colsample_bytree": 0.7,
+	"silent": 1,
+	"seed": 1301
 }
 num_trees = 300
 
@@ -43,7 +43,7 @@ watchlist = [(dtrain, 'train'), (dvalid, 'eval')]
 print('Training XGBoost model')
 start = time()
 gbm = xgb.train(params, dtrain, num_trees, evals=watchlist,
-                early_stopping_rounds=100, feval=rmspe_xg, verbose_eval=50)
+				early_stopping_rounds=100, feval=rmspe_xg, verbose_eval=50)
 end = time()
 print('Training time: {:2f} s.'.format(end - start))
 
@@ -60,16 +60,16 @@ gbm.save_model('../results/xgboost_model.json')
 # -------------------------
 # predict file
 test_probs = gbm.predict(
-    xgb.DMatrix(
-        test[features]
-    ),
-    ntree_limit=gbm.best_ntree_limit
+	xgb.DMatrix(
+		test[features]
+	),
+	ntree_limit=gbm.best_ntree_limit
 )
 indices = test_probs < 0
 test_probs[indices] = 0
 submission = pd.DataFrame({
-    "Id": test["Id"],
-    "Sales": np.expm1(test_probs) * 0.95
+	"Id": test["Id"],
+	"Sales": np.expm1(test_probs) * 0.95
 })
 submission.to_csv(
-    "../results/XGBoost/xgboost_new_model_1_remove_close.csv", index=False)
+	"../results/XGBoost/xgboost_new_model_1_remove_close.csv", index=False)

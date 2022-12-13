@@ -7,9 +7,9 @@ sales_data = pd.read_csv('./dataset/train.csv', low_memory=False)
 
 # merge data store.csv and train.csv
 merged_sales = sales_data.merge(
-    stores_lookup, how='left', on="Store", validate="many_to_one")
+	stores_lookup, how='left', on="Store", validate="many_to_one")
 merged_sales['Date'] = pd.to_datetime(
-    merged_sales['Date'], format="%Y-%m-%d", errors='raise')
+	merged_sales['Date'], format="%Y-%m-%d", errors='raise')
 merged_sales["Year"] = merged_sales["Date"].dt.year
 merged_sales["Month"] = merged_sales["Date"].dt.month
 merged_sales["DayOfMonth"] = merged_sales["Date"].dt.day
@@ -34,7 +34,7 @@ print(merged_sales['Open'].value_counts())
 
 
 sales = merged_sales.drop(
-    index=(merged_sales[merged_sales["Open"] == 0]).index, axis=1)
+	index=(merged_sales[merged_sales["Open"] == 0]).index, axis=1)
 
 print(sales['Open'].value_counts())
 
@@ -44,7 +44,7 @@ sales.drop(columns=["Open"], inplace=True)
 # Next we'll take a look at any outliers we may need to treat.
 
 sales.plot(y=['Sales', 'Customers', 'CompetitionDistance'],
-           kind='box', subplots=True, layout=(2, 2), figsize=(15, 15))
+		   kind='box', subplots=True, layout=(2, 2), figsize=(15, 15))
 
 plt.savefig("outliersPlots/outliersBefore")
 
@@ -54,14 +54,14 @@ plt.savefig("outliersPlots/outliersBefore")
 
 # function obtained from course material, added percent_outliers
 def calculate_outlier(df, column):
-    Q3 = df[column].quantile(0.75)
-    Q1 = df[column].quantile(0.25)
-    IQR = Q3 - Q1
-    lower = Q1 - 1.5 * IQR
-    upper = Q3 + 1.5 * IQR
-    percent_outliers = round(((df[df[column] > upper].shape[0]) +
-                             (df[df[column] < lower].shape[0])) / df.shape[0] * 100, 2)
-    return lower, upper, percent_outliers
+	Q3 = df[column].quantile(0.75)
+	Q1 = df[column].quantile(0.25)
+	IQR = Q3 - Q1
+	lower = Q1 - 1.5 * IQR
+	upper = Q3 + 1.5 * IQR
+	percent_outliers = round(((df[df[column] > upper].shape[0]) +
+							 (df[df[column] < lower].shape[0])) / df.shape[0] * 100, 2)
+	return lower, upper, percent_outliers
 
 # (Fundamentals of Data Analytics with Python - May 2022)
 
@@ -69,10 +69,10 @@ def calculate_outlier(df, column):
 # Sale Outliers
 col = 'Sales'
 lower_sales, upper_sales, percent_outliers_sales = calculate_outlier(
-    sales, col)
+	sales, col)
 
 print(str(lower_sales) + ", " + str(upper_sales) +
-      ", " + str(percent_outliers_sales) + "%")
+	  ", " + str(percent_outliers_sales) + "%")
 
 
 # We know from our summary statistics that there won't be any sales below 0,
@@ -86,21 +86,21 @@ display(sales[sales[col] > upper_sales])
 # We'll look further to see if we see any trends with the outliers based on Month or Type of Store.
 
 sales_outliers_by_month = pd.pivot_table(
-    (sales.loc[sales[col] > upper_sales]), index='Month', values='Sales', aggfunc='count')
+	(sales.loc[sales[col] > upper_sales]), index='Month', values='Sales', aggfunc='count')
 
 sales_outliers_by_month.plot(y='Sales', kind='bar', figsize=(
-    10, 5), title="# of Sales Outlier Entries by Month")
+	10, 5), title="# of Sales Outlier Entries by Month")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/salesOutliersByMonth")
 
 sales_outliers_by_stype = pd.pivot_table(
-    (sales.loc[sales[col] > upper_sales]), index='StoreType', values='Sales', aggfunc='count')
+	(sales.loc[sales[col] > upper_sales]), index='StoreType', values='Sales', aggfunc='count')
 
 
 sales_outliers_by_stype.plot(y='Sales', kind='bar', figsize=(6, 6),
-                             title="# of Sales Outlier Entries by Store Type",
-                             color=['red', 'orange', 'yellow', 'green'])
+							 title="# of Sales Outlier Entries by Store Type",
+							 color=['red', 'orange', 'yellow', 'green'])
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/salesOutliersByStoreType")
@@ -128,10 +128,10 @@ display(sales_treated[sales_treated['Sales'] > 13612])
 
 col = 'Customers'
 lower_cust, upper_cust, percent_outliers_cust = calculate_outlier(
-    sales_treated, col)
+	sales_treated, col)
 
 print(str(lower_cust) + ", " + str(upper_cust) +
-      ", " + str(percent_outliers_cust) + "%")
+	  ", " + str(percent_outliers_cust) + "%")
 
 # Similar to Sales, we know from our summary statistics that we won't have any Customer values below 0, so we'll just look at our upper range value.
 
@@ -142,28 +142,28 @@ display(sales_treated[sales_treated['Customers'] > upper_cust])
 # We expect a high correlation between Customers driving Sales, so we'll check to see how much crossover we have between our Sales and Customers outliers.
 
 print(sales_treated[(sales_treated['Customers'] >
-      upper_cust) & (sales_treated['Sales'] == 13612)])
+	  upper_cust) & (sales_treated['Sales'] == 13612)])
 
 # We can see a crossover of 21,420 rows, or approximately 52% of our Customer outlier entries are also Sales outlier entries.
 
 # We will also investigate how these Customer outliers break down by Month and StoreType just as we did with our Sales outliers.
 
 cust_outliers_by_month = pd.pivot_table(
-    (sales_treated.loc[sales_treated[col] > upper_cust]), index='Month', values='Customers', aggfunc='count')
+	(sales_treated.loc[sales_treated[col] > upper_cust]), index='Month', values='Customers', aggfunc='count')
 
 cust_outliers_by_month.plot(y='Customers', kind='bar', figsize=(
-    10, 5), title="# of Customer Outlier Entries by Month")
+	10, 5), title="# of Customer Outlier Entries by Month")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/customersOutliersByMonth")
 
 
 cust_outliers_by_stype = pd.pivot_table(
-    (sales_treated.loc[sales_treated[col] > upper_cust]), index='StoreType', values='Customers', aggfunc='count')
+	(sales_treated.loc[sales_treated[col] > upper_cust]), index='StoreType', values='Customers', aggfunc='count')
 
 cust_outliers_by_stype.plot(y='Customers', kind='bar', figsize=(6, 6),
-                            title="# of Customer Outlier Entries by Store Type",
-                            color=['red', 'orange', 'yellow', 'green'])
+							title="# of Customer Outlier Entries by Store Type",
+							color=['red', 'orange', 'yellow', 'green'])
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/customersOutliersByStoreType")
@@ -189,10 +189,10 @@ print(sales_treated[sales_treated['Customers'] > 1454])
 
 col = 'CompetitionDistance'
 lower_cust, upper_cust, percent_outliers_cust = calculate_outlier(
-    sales_treated, col)
+	sales_treated, col)
 
 print(str(lower_cust) + ", " + str(upper_cust) +
-      ", " + str(percent_outliers_cust) + "%")
+	  ", " + str(percent_outliers_cust) + "%")
 
 # Similar to Sales, we know from our summary statistics that we won't have any Customer values below 0, so we'll just look at our upper range value.
 
@@ -202,21 +202,21 @@ print(sales_treated[sales_treated['CompetitionDistance'] > upper_cust])
 # We will investigate how these CompetitionDistance outliers break down by Month and StoreType just as we did with our Sales outliers.
 
 cust_outliers_by_month = pd.pivot_table(
-    (sales_treated.loc[sales_treated[col] > upper_cust]), index='Month', values='CompetitionDistance', aggfunc='count')
+	(sales_treated.loc[sales_treated[col] > upper_cust]), index='Month', values='CompetitionDistance', aggfunc='count')
 
 cust_outliers_by_month.plot(y='CompetitionDistance', kind='bar', figsize=(
-    10, 5), title="# of CompetitionDistance Outlier Entries by Month")
+	10, 5), title="# of CompetitionDistance Outlier Entries by Month")
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/competitionDistanceOutliersByMonth")
 
 
 cust_outliers_by_stype = pd.pivot_table(
-    (sales_treated.loc[sales_treated[col] > upper_cust]), index='StoreType', values='CompetitionDistance', aggfunc='count')
+	(sales_treated.loc[sales_treated[col] > upper_cust]), index='StoreType', values='CompetitionDistance', aggfunc='count')
 
 cust_outliers_by_stype.plot(y='CompetitionDistance', kind='bar', figsize=(6, 6),
-                            title="# of CompetitionDistance Outlier Entries by Store Type",
-                            color=['red', 'orange', 'yellow', 'green'])
+							title="# of CompetitionDistance Outlier Entries by Store Type",
+							color=['red', 'orange', 'yellow', 'green'])
 plt.legend(loc='upper right', bbox_to_anchor=(1.2, 1.1))
 # plt.show()
 plt.savefig("outliersPlots/competitionDistanceOutliersByStoreType")
@@ -230,7 +230,7 @@ plt.savefig("outliersPlots/competitionDistanceOutliersByStoreType")
 # so as to limit their influence but also indicate that they're meant to be high numbers.
 
 sales_treated.loc[sales_treated['CompetitionDistance']
-                  > upper_cust, 'CompetitionDistance'] = 16160
+				  > upper_cust, 'CompetitionDistance'] = 16160
 
 # double-checking our imputation worked, as we can see records of this command are empty
 print(sales_treated[sales_treated['CompetitionDistance'] > 16160])
@@ -239,6 +239,6 @@ print(sales_treated[sales_treated['CompetitionDistance'] > 16160])
 # Finally we will look how distribution of our data looks after treatement of outliers
 
 sales_treated.plot(y=['Sales', 'Customers', 'CompetitionDistance'],
-                   kind='box', subplots=True, layout=(2, 2), figsize=(15, 15))
+				   kind='box', subplots=True, layout=(2, 2), figsize=(15, 15))
 
 plt.savefig("outliersPlots/outliersAfterTreatement")
