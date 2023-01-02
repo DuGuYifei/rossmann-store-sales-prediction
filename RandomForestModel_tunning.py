@@ -13,7 +13,7 @@ store.fillna(0, inplace=True)
 
 train = train.loc[train.Open != 0]
 train = train.loc[train.Sales > 0].reset_index(drop=True)
-train.drop(['Customers'], axis=1, inplace=True)
+# train.drop(['Customers'], axis=1, inplace=True)
 
 train = pd.merge(train, store, on='Store')
 
@@ -37,7 +37,7 @@ y_test = X_test_without_date['Sales']
 x_test = X_test_without_date.drop(['Sales'], axis=1)
 
 rf_model = RandomForestRegressor(
-    n_estimators=200, oob_score=True, n_jobs=32, verbose=1, random_state=678)
+    n_estimators=200, n_jobs=32, verbose=1, random_state=678)
 
 rf_model.fit(x_train, y_train)
 rf_predict = rf_model.predict(x_test)
@@ -45,7 +45,6 @@ rf_predict = rf_model.predict(x_test)
 rf_rmse = np.sqrt(mean_squared_error(rf_predict, y_test))
 rf_mae = mean_absolute_error(rf_predict, y_test)
 rf_r2 = r2_score(rf_predict, y_test)
-print('oob score :', rf_model.oob_score_)
 print('Random Forest RMSE: ', rf_rmse)
 print('Random Forest MAE: ', rf_mae)
 print('Random Forest R2 Score: ', rf_r2)
