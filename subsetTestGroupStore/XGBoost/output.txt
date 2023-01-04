@@ -1,0 +1,126 @@
+----------data_a_a-------------------------
+Training XGBoost model
+[13:28:51] WARNING: ../src/objective/regression_obj.cu:203: reg:linear is now deprecated in favor of reg:squarederror.
+[13:28:51] WARNING: ../src/learner.cc:627:
+Parameters: { "silent" } might not be used.
+
+  This could be a false alarm, with some parameters getting used by language bindings but
+  then being mistakenly passed down to XGBoost core, or some parameter actually being used
+  but getting flagged wrongly here. Please open an issue if you find any such cases.
+
+
+/opt/conda/lib/python3.7/site-packages/xgboost/training.py:36: UserWarning: `feval` is deprecated, use `custom_metric` instead.  They have different behavior when custom objective is also used.See https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html for details on the `custom_metric`.
+  "`feval` is deprecated, use `custom_metric` instead.  They have "
+[0]	train-rmse:5.75282	train-rmspe:0.99672	eval-rmse:5.75851	eval-rmspe:0.99674
+[50]	train-rmse:0.11343	train-rmspe:0.16928	eval-rmse:0.12363	eval-rmspe:0.14019
+[100]	train-rmse:0.08857	train-rmspe:0.10569	eval-rmse:0.10474	eval-rmspe:0.12071
+[150]	train-rmse:0.07868	train-rmspe:0.08627	eval-rmse:0.10062	eval-rmspe:0.11762
+[200]	train-rmse:0.07238	train-rmspe:0.07747	eval-rmse:0.09894	eval-rmspe:0.11650
+[250]	train-rmse:0.06723	train-rmspe:0.07056	eval-rmse:0.09782	eval-rmspe:0.11410
+[299]	train-rmse:0.06327	train-rmspe:0.06583	eval-rmse:0.09726	eval-rmspe:0.11333
+Training time: 118.210454 s.
+Validating
+RMSPE:0.095447
+RMSE:7181.313746
+MAE:6582.349563
+R2:-5.253940
+----------data_a_a-------------------------
+----------data_a_c-------------------------
+Training XGBoost model
+[13:30:51] WARNING: ../src/objective/regression_obj.cu:203: reg:linear is now deprecated in favor of reg:squarederror.
+[13:30:51] WARNING: ../src/learner.cc:627:
+Parameters: { "silent" } might not be used.
+
+  This could be a false alarm, with some parameters getting used by language bindings but
+  then being mistakenly passed down to XGBoost core, or some parameter actually being used
+  but getting flagged wrongly here. Please open an issue if you find any such cases.
+
+
+/opt/conda/lib/python3.7/site-packages/xgboost/training.py:36: UserWarning: `feval` is deprecated, use `custom_metric` instead.  They have different behavior when custom objective is also used.See https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html for details on the `custom_metric`.
+  "`feval` is deprecated, use `custom_metric` instead.  They have "
+[0]	train-rmse:5.82837	train-rmspe:0.99697	eval-rmse:5.82374	eval-rmspe:0.99696
+[50]	train-rmse:0.10871	train-rmspe:0.11795	eval-rmse:0.11562	eval-rmspe:0.12240
+[100]	train-rmse:0.08625	train-rmspe:0.09236	eval-rmse:0.09961	eval-rmspe:0.10560
+[150]	train-rmse:0.07599	train-rmspe:0.08017	eval-rmse:0.09498	eval-rmspe:0.10084
+[200]	train-rmse:0.06907	train-rmspe:0.07208	eval-rmse:0.09307	eval-rmspe:0.09897
+[250]	train-rmse:0.06434	train-rmspe:0.06671	eval-rmse:0.09228	eval-rmspe:0.09841
+[299]	train-rmse:0.06041	train-rmspe:0.06221	eval-rmse:0.09185	eval-rmspe:0.09812
+Training time: 103.998926 s.
+Validating
+RMSPE:0.101386
+RMSE:7803.317099
+MAE:7201.042542
+R2:-5.736545
+----------data_a_c-------------------------
+----------data_b_a-------------------------
+Training XGBoost model
+[13:32:36] WARNING: ../src/objective/regression_obj.cu:203: reg:linear is now deprecated in favor of reg:squarederror.
+[13:32:36] WARNING: ../src/learner.cc:627:
+Parameters: { "silent" } might not be used.
+
+  This could be a false alarm, with some parameters getting used by language bindings but
+  then being mistakenly passed down to XGBoost core, or some parameter actually being used
+  but getting flagged wrongly here. Please open an issue if you find any such cases.
+
+
+[0]	train-rmse:6.10485	train-rmspe:0.99765	eval-rmse:6.12666	eval-rmspe:0.99777
+/opt/conda/lib/python3.7/site-packages/xgboost/training.py:36: UserWarning: `feval` is deprecated, use `custom_metric` instead.  They have different behavior when custom objective is also used.See https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html for details on the `custom_metric`.
+  "`feval` is deprecated, use `custom_metric` instead.  They have "
+[50]	train-rmse:0.02469	train-rmspe:0.02479	eval-rmse:0.07212	eval-rmspe:0.07069
+[100]	train-rmse:0.00769	train-rmspe:0.00769	eval-rmse:0.07294	eval-rmspe:0.07186
+[150]	train-rmse:0.00321	train-rmspe:0.00321	eval-rmse:0.07331	eval-rmspe:0.07239
+[161]	train-rmse:0.00263	train-rmspe:0.00263	eval-rmse:0.07341	eval-rmspe:0.07251
+Training time: 2.200713 s.
+Validating
+RMSPE:0.075015
+RMSE:12199.181595
+MAE:10996.408918
+R2:-4.333396
+----------data_b_a-------------------------
+----------data_b_b-------------------------
+Training XGBoost model
+[13:32:38] WARNING: ../src/objective/regression_obj.cu:203: reg:linear is now deprecated in favor of reg:squarederror.
+[13:32:38] WARNING: ../src/learner.cc:627:
+Parameters: { "silent" } might not be used.
+
+  This could be a false alarm, with some parameters getting used by language bindings but
+  then being mistakenly passed down to XGBoost core, or some parameter actually being used
+  but getting flagged wrongly here. Please open an issue if you find any such cases.
+
+
+[0]	train-rmse:5.93609	train-rmspe:0.99726	eval-rmse:5.94761	eval-rmspe:0.99730
+/opt/conda/lib/python3.7/site-packages/xgboost/training.py:36: UserWarning: `feval` is deprecated, use `custom_metric` instead.  They have different behavior when custom objective is also used.See https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html for details on the `custom_metric`.
+  "`feval` is deprecated, use `custom_metric` instead.  They have "
+[50]	train-rmse:0.02578	train-rmspe:0.02574	eval-rmse:0.06877	eval-rmspe:0.07012
+[100]	train-rmse:0.01010	train-rmspe:0.01010	eval-rmse:0.06949	eval-rmspe:0.07147
+[150]	train-rmse:0.00459	train-rmspe:0.00459	eval-rmse:0.06961	eval-rmspe:0.07154
+Training time: 2.218021 s.
+Validating
+RMSPE:0.068415
+RMSE:9472.362417
+MAE:8735.175319
+R2:-5.683170
+----------data_b_b-------------------------
+----------data_b_c-------------------------
+Training XGBoost model
+[13:32:40] WARNING: ../src/objective/regression_obj.cu:203: reg:linear is now deprecated in favor of reg:squarederror.
+[13:32:40] WARNING: ../src/learner.cc:627:
+Parameters: { "silent" } might not be used.
+
+  This could be a false alarm, with some parameters getting used by language bindings but
+  then being mistakenly passed down to XGBoost core, or some parameter actually being used
+  but getting flagged wrongly here. Please open an issue if you find any such cases.
+
+
+[0]	train-rmse:6.50313	train-rmspe:0.99853	eval-rmse:6.54239	eval-rmspe:0.99859
+/opt/conda/lib/python3.7/site-packages/xgboost/training.py:36: UserWarning: `feval` is deprecated, use `custom_metric` instead.  They have different behavior when custom objective is also used.See https://xgboost.readthedocs.io/en/latest/tutorials/custom_metric_obj.html for details on the `custom_metric`.
+  "`feval` is deprecated, use `custom_metric` instead.  They have "
+[50]	train-rmse:0.00540	train-rmspe:0.00540	eval-rmse:0.05320	eval-rmspe:0.05173
+[100]	train-rmse:0.00110	train-rmspe:0.00110	eval-rmse:0.05361	eval-rmspe:0.05209
+[122]	train-rmse:0.00106	train-rmspe:0.00106	eval-rmse:0.05361	eval-rmspe:0.05209
+Training time: 0.847742 s.
+Validating
+RMSPE:0.055345
+RMSE:18404.040961
+MAE:18206.719373
+R2:-45.880927
